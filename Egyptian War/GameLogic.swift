@@ -78,6 +78,7 @@ class GameLogic {
         }
     }
     
+    //I'll be adding sound to this (ethan)
     func playerSlap(playerNum: Int) {
         if (gameDecks[0].slappable) {       //if the slap was correct
             gameDecks[playerNum].cards.append(contentsOf: gameDecks[0].cards)
