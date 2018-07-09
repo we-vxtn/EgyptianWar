@@ -35,6 +35,7 @@ class GameLogic {
         faceCardDealt = false
     }
     
+    //
     func playerDeal(playerNum: Int) {
         if (turn%2 == playerNum%2) {          // if it is playerNum's turn
             let dealtCard = gameDecks[playerNum].cards.remove(at: 0)
