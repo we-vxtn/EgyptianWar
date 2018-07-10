@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class EgyptianWarViewController: UIViewController {
     
@@ -19,13 +20,17 @@ class EgyptianWarViewController: UIViewController {
     
     var game: GameLogic = GameLogic()
     
-
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         updateCardCounts()
         updateDealButtons()
         updateCardImages()
+        
+  
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +40,7 @@ class EgyptianWarViewController: UIViewController {
     
     @IBAction func playerAction(_ sender: UIButton) {
         let label: String = sender.titleLabel!.text!
+        
         if (label == "1Slap") {
             game.playerSlap(playerNum: 1)
         } else if (label == "2Slap") {

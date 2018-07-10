@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class GameLogic {
     
     var gameDecks: [Stack]!
@@ -35,9 +36,16 @@ class GameLogic {
         faceCardDealt = false
     }
     
-    //
+    
     func playerDeal(playerNum: Int) {
         if (turn%2 == playerNum%2) {          // if it is playerNum's turn
+            
+            //Should play sound
+            SoundController.cardDeal()
+            
+
+ 
+ 
             let dealtCard = gameDecks[playerNum].cards.remove(at: 0)
             gameDecks[0].cards.append(dealtCard)
             gameDecks[0].cardFromPlayer.append(playerNum)
@@ -71,6 +79,8 @@ class GameLogic {
         }
         else {                                // if it is not playerNum's turn
             //burns a card
+            SoundController.cardBurn()
+
             let burntCard = gameDecks[playerNum].cards.remove(at: 0)
             gameDecks[0].cards.insert(burntCard, at: 0)
             gameDecks[0].cardFromPlayer.insert(playerNum, at: 0)
@@ -80,7 +90,10 @@ class GameLogic {
     
     //I'll be adding sound to this (ethan)
     func playerSlap(playerNum: Int) {
+        
         if (gameDecks[0].slappable) {       //if the slap was correct
+            SoundController.slap()
+            
             gameDecks[playerNum].cards.append(contentsOf: gameDecks[0].cards)
             gameDecks[0].cards.removeAll()
             
@@ -91,6 +104,8 @@ class GameLogic {
         }
         else {                              //if the slap was wrong
             //burns a card
+            SoundController.slap()
+            SoundController.cardBurn()
             let burntCard = gameDecks[playerNum].cards.remove(at: 0)
             gameDecks[0].cards.insert(burntCard, at: 0)
             gameDecks[0].cardFromPlayer.insert(playerNum, at: 0)
