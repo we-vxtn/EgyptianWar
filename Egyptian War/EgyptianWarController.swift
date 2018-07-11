@@ -71,20 +71,37 @@ class EgyptianWarViewController: UIViewController {
         }
     }
     
+    @IBAction func claimPressed(_ sender: UIButton) {
+        game.claimDeck()
+        updateCardImages()
+        updateCardCounts()
+        updateDealButtons()
+    }
+    
     func updateCardCounts() {
         player1CardCount.text = "x\(game.gameDecks[1].cards.count)"
         player2CardCount.text = "x\(game.gameDecks[2].cards.count)"
     }
     
     func updateDealButtons() {
-        if (game.turn%2 == 1) {         //if it is player 1's turn
-            player1Deal.setImage(UIImage(named: "HilightedDealButton", in: Bundle(for: type(of: self)), compatibleWith: self.traitCollection), for: .normal)
-            player2Deal.setImage(UIImage(named: "DealButton", in: Bundle(for: type(of: self)), compatibleWith: self.traitCollection), for: .normal)
+        if(game.buttonsShouldBeHilighted == false) {
+            unhilightDealButtons()
         }
-        else {         //if it is player 2's turn
-            player2Deal.setImage(UIImage(named: "HilightedDealButton", in: Bundle(for: type(of: self)), compatibleWith: self.traitCollection), for: .normal)
-            player1Deal.setImage(UIImage(named: "DealButton", in: Bundle(for: type(of: self)), compatibleWith: self.traitCollection), for: .normal)
+        else {
+            if (game.turn%2 == 1) {         //if it is player 1's turn
+                player1Deal.setImage(UIImage(named: "HilightedDealButton", in: Bundle(for: type(of: self)), compatibleWith: self.traitCollection), for: .normal)
+                player2Deal.setImage(UIImage(named: "DealButton", in: Bundle(for: type(of: self)), compatibleWith: self.traitCollection), for: .normal)
+            }
+            else {         //if it is player 2's turn
+                player2Deal.setImage(UIImage(named: "HilightedDealButton", in: Bundle(for: type(of: self)), compatibleWith: self.traitCollection), for: .normal)
+                player1Deal.setImage(UIImage(named: "DealButton", in: Bundle(for: type(of: self)), compatibleWith: self.traitCollection), for: .normal)
+            }
         }
+    }
+    
+    func unhilightDealButtons() {
+        player1Deal.setImage(UIImage(named: "DealButton", in: Bundle(for: type(of: self)), compatibleWith: self.traitCollection), for: .normal)
+        player2Deal.setImage(UIImage(named: "DealButton", in: Bundle(for: type(of: self)), compatibleWith: self.traitCollection), for: .normal)
     }
     
     func updateCardImages() {

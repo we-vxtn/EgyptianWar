@@ -72,7 +72,6 @@
 			children = (
 				180DA84C20EBF7DE008703C6 /* AppDelegate.swift */,
 				180DA84E20EBF7DE008703C6 /* EgyptianWarController.swift */,
-				3A2009B920F5577A002B6349 /* SoundController.swift */,
 				180DA86020EBFA51008703C6 /* CardStackView.swift */,
 				180DA85020EBF7DE008703C6 /* Main.storyboard */,
 				180DA85320EBF7DF008703C6 /* Assets.xcassets */,
@@ -80,6 +79,7 @@
 				180DA85E20EBF988008703C6 /* Card.swift */,
 				180DA86220EBFDCD008703C6 /* Stack.swift */,
 				180DA86420EC0185008703C6 /* GameLogic.swift */,
+				3A2009B920F5577A002B6349 /* SoundController.swift */,
 				180DA85520EBF7DF008703C6 /* LaunchScreen.storyboard */,
 				180DA85820EBF7DF008703C6 /* Info.plist */,
 			);
