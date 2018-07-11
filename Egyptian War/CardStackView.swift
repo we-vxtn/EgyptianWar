@@ -10,6 +10,7 @@ import UIKit
 
 @IBDesignable class CardStackView: UIStackView {
     
+    //MARK: Variables
     var stack: Stack!
     var cardViews: [UIImageView]!
     
@@ -21,6 +22,7 @@ import UIKit
         }
     }
     
+    //MARK: Initializers
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -57,6 +59,7 @@ import UIKit
         updateImages()
     }
     
+    //MARK: Update Methods
     func setStack(_ stack: Stack) {
         self.stack = stack
         updateImages()
@@ -117,14 +120,5 @@ import UIKit
             }
         }
     }
-
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }
