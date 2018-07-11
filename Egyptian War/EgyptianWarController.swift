@@ -89,7 +89,17 @@ class EgyptianWarViewController: UIViewController {
     
     //MARK: Slap Functions
     @objc func slap(sender: UITapGestureRecognizer) {
-        print("center tapped")
+        let touchPoint:CGPoint = sender.location(in: centerStackView)
+        
+        if(touchPoint.y <= centerStackView.frame.size.height/2) {
+            game.playerSlap(playerNum: 2)
+        }
+        else {
+            game.playerSlap(playerNum: 1)
+        }
+        
+        updateView()
+        checkLoss()
     }
     
     @IBAction func playerAction(_ sender: UIButton) {
@@ -148,7 +158,7 @@ class EgyptianWarViewController: UIViewController {
                 player1CardBack.image = hilightedBack
                 player2CardBack.image = unhilightedBack
             }
-            else {         //if it is player 2's turn
+            else {                          //if it is player 2's turn
                 player1CardBack.image = unhilightedBack
                 player2CardBack.image = hilightedBack
             }
@@ -160,6 +170,7 @@ class EgyptianWarViewController: UIViewController {
         centerStackView.updateImages()
     }
     
+    //MARK: Restart Game Methods
     func checkLoss() {
         if(game.checkLoss()) {
             if(game.gameDecks[1].cards.count == 0) {
