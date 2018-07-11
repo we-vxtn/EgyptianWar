@@ -67,7 +67,7 @@
                                         <rect key="frame" x="0.0" y="119.00000000000003" width="345" height="466.66666666666674"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Mkl-9Q-Q2D" customClass="CardStackView" customModule="Egyptian_War" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="305" height="466.66666666666669"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="466.66666666666669"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cardOffset">
@@ -78,17 +78,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xjh-y2-3N6">
-                                                <rect key="frame" x="305" y="0.0" width="40" height="466.66666666666669"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="FPY-Ki-XxQ"/>
-                                                </constraints>
-                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="claim" image="SlapButton"/>
-                                                <connections>
-                                                    <action selector="claimPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3xu-uB-iXI"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JOB-75-hX6" userLabel="Player 1">

@@ -33,6 +33,17 @@ class EgyptianWarViewController: UIViewController {
         // rotates the 2nd players control view by pi radians
         player2Controls.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         
+        // adds gesture recognizers to CardStackView so that it can move the stack when done
+        let centerSwipePlayer1Recognizer = UISwipeGestureRecognizer(target: self, action: #selector(player1Swipe))
+        centerSwipePlayer1Recognizer.direction = .down
+        
+        let centerSwipePlayer2Recognizer = UISwipeGestureRecognizer(target: self, action: #selector(player2Swipe))
+        centerSwipePlayer2Recognizer.direction = .up
+        
+        centerStackView.addGestureRecognizer(centerSwipePlayer1Recognizer)
+        centerStackView.addGestureRecognizer(centerSwipePlayer2Recognizer)
+        
+        centerStackView.isUserInteractionEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +84,24 @@ class EgyptianWarViewController: UIViewController {
         }
     }
     
-    @IBAction func claimPressed(_ sender: UIButton) {
+    @objc func player1Swipe() {
+        claimPressedBy(playerNum: 1)
+    }
+    
+    @objc func player2Swipe() {
+        claimPressedBy(playerNum: 2)
+    }
+    
+    @objc func claimPressedBy(playerNum: Int) {
+        if( playerNum == game.playerToWinDeck) {
+            game.claimDeck()
+            updateCardImages()
+            updateCardCounts()
+            updateDealButtons()
+        }
+    }
+    
+    @objc func claimPressed(_ sender: UIButton) {
         game.claimDeck()
         updateCardImages()
         updateCardCounts()
