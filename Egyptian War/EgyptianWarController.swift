@@ -26,6 +26,8 @@ class EgyptianWarViewController: UIViewController {
     @IBOutlet weak var player1Controls: UIStackView!
     @IBOutlet weak var player2Controls: UIStackView!
     
+    
+    
     //MARK: Variables
     var game: GameLogic!
     
@@ -60,11 +62,6 @@ class EgyptianWarViewController: UIViewController {
         player2DealRecognizer.direction = .up
         player2CardStack.addGestureRecognizer(player2DealRecognizer)
         player2CardStack.isUserInteractionEnabled = true
-        
-        // add tap gesture recognizer to centerStackView so that it can detect slaps
-        let slapRecognizer = UITapGestureRecognizer(target: self, action: #selector(slap(sender:)))
-        centerStackView.addGestureRecognizer(slapRecognizer)
-        centerStackView.isUserInteractionEnabled = true                 //this line is redundant, it's already true
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,16 +85,17 @@ class EgyptianWarViewController: UIViewController {
     }
     
     //MARK: Slap Functions
-    @objc func slap(sender: UITapGestureRecognizer) {
-        let touchPoint:CGPoint = sender.location(in: centerStackView)
-        
-        if(touchPoint.y <= centerStackView.frame.size.height/2) {
-            game.playerSlap(playerNum: 2)
-        }
-        else {
-            game.playerSlap(playerNum: 1)
-        }
-        
+    
+    @IBAction func player2Slap(_ sender: Any) {
+        print("player2 Slapped")
+        game.playerSlap(playerNum: 2)
+        updateView()
+        checkLoss()
+    }
+    
+    @IBAction func player1Slap(_ sender: Any) {
+        print("player1 slapped")
+        game.playerSlap(playerNum: 1)
         updateView()
         checkLoss()
     }
