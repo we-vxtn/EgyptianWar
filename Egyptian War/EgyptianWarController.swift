@@ -18,9 +18,10 @@ class EgyptianWarViewController: UIViewController {
     @IBOutlet weak var player1Deal: UIButton!
     @IBOutlet weak var player2Deal: UIButton!
     
-    var game: GameLogic = GameLogic()
+    @IBOutlet weak var player1Controls: UIStackView!
+    @IBOutlet weak var player2Controls: UIStackView!
     
- 
+    var game: GameLogic = GameLogic()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,8 @@ class EgyptianWarViewController: UIViewController {
         updateDealButtons()
         updateCardImages()
         
-  
+        // rotates the 2nd players control view by pi radians
+        player2Controls.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         
     }
 

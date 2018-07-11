@@ -24,16 +24,23 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bPp-Bk-t8N" userLabel="Player 2">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="109"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHa-1L-tUh" userLabel="player 2 slap">
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="SA3-It-Vpb" userLabel="player 2 stack">
                                                 <rect key="frame" x="0.0" y="0.0" width="108.33333333333333" height="109"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="TBl-tK-eF9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="76.666666666666671" height="109"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="x52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYE-j3-GYg" userLabel="player 2 card count">
+                                                        <rect key="frame" x="79.666666666666671" y="0.0" width="28.666666666666671" height="109"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="nHa-1L-tUh" secondAttribute="height" multiplier="1:1" id="NTa-HZ-UA1"/>
+                                                    <constraint firstItem="TBl-tK-eF9" firstAttribute="height" secondItem="SA3-It-Vpb" secondAttribute="height" id="Mtu-4W-7Bm"/>
                                                 </constraints>
-                                                <state key="normal" title="2Slap" image="SlapButton"/>
-                                                <connections>
-                                                    <action selector="playerAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="adf-T2-4oc"/>
-                                                </connections>
-                                            </button>
+                                            </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFF-ia-Kle" userLabel="player 2 deal">
                                                 <rect key="frame" x="118.33333333333334" y="0.0" width="108.33333333333334" height="109"/>
                                                 <constraints>
@@ -44,23 +51,16 @@
                                                     <action selector="playerAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d5x-mH-fm1"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="SA3-It-Vpb" userLabel="player 2 stack">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHa-1L-tUh" userLabel="player 2 slap">
                                                 <rect key="frame" x="236.66666666666666" y="0.0" width="108.33333333333334" height="109"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="TBl-tK-eF9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="76.666666666666671" height="109"/>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="x52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYE-j3-GYg" userLabel="player 2 card count">
-                                                        <rect key="frame" x="79.666666666666657" y="0.0" width="28.666666666666671" height="109"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="TBl-tK-eF9" firstAttribute="height" secondItem="SA3-It-Vpb" secondAttribute="height" id="Mtu-4W-7Bm"/>
+                                                    <constraint firstAttribute="width" secondItem="nHa-1L-tUh" secondAttribute="height" multiplier="1:1" id="NTa-HZ-UA1"/>
                                                 </constraints>
-                                            </stackView>
+                                                <state key="normal" title="2Slap" image="SlapButton"/>
+                                                <connections>
+                                                    <action selector="playerAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="adf-T2-4oc"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35D-zb-zhR" userLabel="Center">
@@ -148,8 +148,10 @@
                     <connections>
                         <outlet property="centerStackView" destination="Mkl-9Q-Q2D" id="OqG-Lh-2xy"/>
                         <outlet property="player1CardCount" destination="dZy-Ht-pbO" id="pTE-ug-fjE"/>
+                        <outlet property="player1Controls" destination="JOB-75-hX6" id="M3P-gQ-LY4"/>
                         <outlet property="player1Deal" destination="SYu-UH-M7b" id="shj-iN-zKh"/>
                         <outlet property="player2CardCount" destination="WYE-j3-GYg" id="73e-6u-O10"/>
+                        <outlet property="player2Controls" destination="bPp-Bk-t8N" id="e30-aW-pbf"/>
                         <outlet property="player2Deal" destination="gFF-ia-Kle" id="tsj-TC-3DH"/>
                     </connections>
                 </viewController>
