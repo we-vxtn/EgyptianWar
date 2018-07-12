@@ -10,15 +10,42 @@ import UIKit
 
 @IBDesignable class CardStackView: UIStackView {
     
-    //MARK: Variables
+    //MARK: Logic related Variables
     var stack: Stack!
-    var cardViews: [UIImageView]!
+    var cardViews: [UIImageView]!       //0 is the bottom, count-1 is top
     
+    //MARK: Display parameter related Variables
     var numberOfCards: Int = 5
     var cardOffset: Int = 30 {
         didSet {
             setImageConstraints()
             updateImages()
+        }
+    }
+    
+    //MARK: Variables needed for animation
+    var topCardFrame: CGRect {          // returns the top card's frame
+        get {
+            return cardViews[cardViews.count-1].superview!.convert(cardViews[cardViews.count-1].frame, to: nil)
+        }
+    }
+    var bottomCardFrame: CGRect {       // returns the bottom card's frame
+        get {
+            if (stack.cards.count < numberOfCards) {
+                return cardViews[0].superview!.convert(cardViews[cardViews.count - stack.cards.count].frame, to: nil)
+            }
+            else {
+                return cardViews[0].superview!.convert(cardViews[0].frame, to: nil)
+            }
+        }
+    }
+    var cardFrames: [CGRect] {
+        get {
+            var frames: [CGRect] = [CGRect]()
+            for cardView in cardViews {
+                frames.append(cardView.superview!.convert(cardView.frame, to: nil))
+            }
+            return frames
         }
     }
     
@@ -76,9 +103,9 @@ import UIKit
             addSubview(cardView)
             cardView.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: CGFloat(index*cardOffset)).isActive = true
             cardView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: CGFloat(index*cardOffset)).isActive = true
-            cardView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+            cardView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            cardView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         }
-        
     }
     
     func updateImages() {
@@ -86,34 +113,12 @@ import UIKit
             // gets the card view
             let cardView = cardViews[numberOfCards+index]
                 
-            // sets the image of the card and shifts the view, or hides the card
+            // sets the image of the card, or hides the card
             if(stack.cards.count+index >= 0) {
                 //sets the image and unhides the view
                 cardView.isHidden = false
                 let cardName = stack.cards[stack.cards.count + index].name
                 cardView.image = UIImage(named: cardName, in: Bundle(for: type(of: self)), compatibleWith: self.traitCollection)
-                
-                /*
-                print(stack.cardFromPlayer)
-                //shifts the y position of the view
-                if(stack.cardFromPlayer[stack.cardFromPlayer.count + index]==1) {
-                    cardView.topAnchor.constraint(equalTo: self.topAnchor).isActive = false
-                    cardView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = false
-                    cardView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-                    print("constraint1 is in place")
-                }
-                else if(stack.cardFromPlayer[stack.cardFromPlayer.count + index]==2) {
-                    cardView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-                    cardView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = false
-                    cardView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = false
-                    print("constraint2 is in place")
-                }
-                else {
-                    cardView.topAnchor.constraint(equalTo: self.topAnchor).isActive = false
-                    cardView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-                    cardView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = false
-                    print("constraint3 is in place")
-                }*/
             }
             else {
                 cardView.isHidden = true

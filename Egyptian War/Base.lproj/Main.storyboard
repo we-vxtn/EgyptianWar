@@ -22,16 +22,16 @@
                                 <rect key="frame" x="15" y="59" width="345" height="704"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bPp-Bk-t8N" userLabel="Player 2">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="165"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="164.66666666666666"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SA3-It-Vpb" userLabel="player 2 stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="165"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="164.66666666666666"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="TBl-tK-eF9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="136" height="165"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="136" height="164.66666666666666"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="x52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYE-j3-GYg" userLabel="player 2 card count">
-                                                        <rect key="frame" x="136" y="0.0" width="28.666666666666657" height="165"/>
+                                                        <rect key="frame" x="136" y="0.0" width="28.666666666666657" height="164.66666666666666"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -42,13 +42,13 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHa-1L-tUh" userLabel="player 2 slap">
-                                                <rect key="frame" x="180.66666666666663" y="0.0" width="164.33333333333337" height="165"/>
+                                                <rect key="frame" x="180.66666666666663" y="0.0" width="164.33333333333337" height="164.66666666666666"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="nHa-1L-tUh" secondAttribute="height" multiplier="1:1" id="NTa-HZ-UA1"/>
                                                 </constraints>
                                                 <state key="normal" title="2Slap" image="SlapButton"/>
                                                 <connections>
-                                                    <action selector="playerAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="adf-T2-4oc"/>
+                                                    <action selector="player2Slap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9RU-et-zFh"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -57,20 +57,20 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Mkl-9Q-Q2D" customClass="CardStackView" customModule="Egyptian_War" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="165.00000000000003" width="345" height="371.66666666666674"/>
+                                        <rect key="frame" x="0.0" y="164.66666666666663" width="345" height="372"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZB2-h1-9sQ" userLabel="player slaps">
-                                                <rect key="frame" x="0.0" y="-0.33333333333334281" width="345" height="371.66666666666669"/>
+                                                <rect key="frame" x="0.0" y="-0.33333333333334281" width="345" height="372"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMv-jw-6ge" userLabel="player2Slap">
-                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="185.66666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="186"/>
                                                         <connections>
                                                             <outletCollection property="gestureRecognizers" destination="AyC-W0-Rk9" appends="YES" id="ziK-uQ-pII"/>
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThQ-TB-paQ" userLabel="player1Slap">
-                                                        <rect key="frame" x="0.0" y="185.66666666666669" width="345" height="186"/>
+                                                        <rect key="frame" x="0.0" y="186" width="345" height="186"/>
                                                         <connections>
                                                             <outletCollection property="gestureRecognizers" destination="bCi-zW-2iM" appends="YES" id="72P-RP-TgF"/>
                                                         </connections>
@@ -116,7 +116,7 @@
                                                 </constraints>
                                                 <state key="normal" title="1Slap" image="SlapButton"/>
                                                 <connections>
-                                                    <action selector="playerAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tXU-Wq-AhF"/>
+                                                    <action selector="player1Slap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e5X-1s-Ocf"/>
                                                 </connections>
                                             </button>
                                         </subviews>

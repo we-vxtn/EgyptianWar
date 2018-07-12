@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class EgyptianWarViewController: UIViewController {
+class EgyptianWarViewController: UIViewController, AnimationDelegate {
     
     //MARK: IBOutlet Variables
     @IBOutlet weak var player1CardStack: UIStackView!
@@ -26,9 +26,7 @@ class EgyptianWarViewController: UIViewController {
     @IBOutlet weak var player1Controls: UIStackView!
     @IBOutlet weak var player2Controls: UIStackView!
     
-    
-    
-    //MARK: Variables
+    //MARK: Game Variables
     var game: GameLogic!
     
     //MARK: UIViewController Functions
@@ -80,35 +78,21 @@ class EgyptianWarViewController: UIViewController {
     
     func playerDeal(playerNum: Int){
         game.playerDeal(playerNum: playerNum)
-        updateView()
         checkLoss()
     }
     
     //MARK: Slap Functions
     
-    @IBAction func player2Slap(_ sender: Any) {
-        print("player2 Slapped")
-        game.playerSlap(playerNum: 2)
-        updateView()
-        checkLoss()
-    }
-    
     @IBAction func player1Slap(_ sender: Any) {
-        print("player1 slapped")
-        game.playerSlap(playerNum: 1)
-        updateView()
-        checkLoss()
+        playerSlap(playerNum: 1)
     }
     
-    @IBAction func playerAction(_ sender: UIButton) {
-        let label: String = sender.titleLabel!.text!
-        
-        if (label == "1Slap") {
-            game.playerSlap(playerNum: 1)
-        } else if (label == "2Slap") {
-            game.playerSlap(playerNum: 2)
-        }
-        
+    @IBAction func player2Slap(_ sender: Any) {
+        playerSlap(playerNum: 2)
+    }
+    
+    func playerSlap(playerNum: Int) {
+        game.playerSlap(playerNum: playerNum)
         updateView()
         checkLoss()
     }
@@ -125,15 +109,14 @@ class EgyptianWarViewController: UIViewController {
     func claimedBy(playerNum: Int) {
         if( playerNum == game.playerToWinDeck) {
             game.claimDeck()
-            updateView()
         }
     }
     
     //MARK: Update State Functions
     func updateView() {
         updateCardCounts()
-        updateStackImages()
-        updateCardImages()
+        updatePlayersStackImages()
+        updateCenterStackImages()
     }
     
     func updateCardCounts() {
@@ -142,7 +125,7 @@ class EgyptianWarViewController: UIViewController {
         player2CardCount.text = "x\(game.gameDecks[2].cards.count)"
     }
     
-    func updateStackImages() {
+    func updatePlayersStackImages() {
         //changes the images based on who's turn it is to deal
         let unhilightedBack = UIImage(named: "back")
         let hilightedBack = UIImage(named: "backHilighted")
@@ -163,14 +146,14 @@ class EgyptianWarViewController: UIViewController {
         }
     }
     
-    func updateCardImages() {
+    func updateCenterStackImages() {
         centerStackView.stack = game.gameDecks[0]
         centerStackView.updateImages()
     }
     
     //MARK: Restart Game Methods
     func checkLoss() {
-        if(game.checkLoss()) {
+        if(game.loss) {
             if(game.gameDecks[1].cards.count == 0) {
                 print("player 2 wins")
             }
@@ -184,8 +167,92 @@ class EgyptianWarViewController: UIViewController {
     
     func newGame() {
         game = GameLogic()
+        game.addAnimationDelegate(self)
         centerStackView.stack = game.gameDecks[0]
         updateView()
     }
+    
+    //MARK: Animation Variables
+    var playerStackFrames: [CGRect] {
+        get {
+            return [CGRect.zero,                //just an empty slot
+                    (player1CardBack.superview?.convert(player1CardBack.frame, to: nil))!,      //player1's stack
+                    (player2CardBack.superview?.convert(player2CardBack.frame, to: nil))!]      //player2's stack
+        }
+    }
+    
+    var slapAnimationDuration: Double = 0.3
+    var burnAnimationDuration: Double = 0.6
+    var claimAnimationDuration: Double = 0.3
+    
+    //MARK: Animation Methods
+    func animate(card: Card, from: CGRect, to: CGRect, isOnTop: Bool, duration: Double) {
+        // initialize the imageView
+        let movingCard = UIImageView()
+        movingCard.contentMode = .scaleAspectFit
+        self.view.addSubview(movingCard)
+        
+        // moves the card to the bottom, if isOnTop is false
+        if(!isOnTop) {
+            self.view.sendSubview(toBack: movingCard)
+        }
+        
+        // set the imageView's location
+        movingCard.frame = from
+        movingCard.layoutIfNeeded()
+        
+        // add the image and unhide the imageView
+        movingCard.image = UIImage(named: card.name)
+        movingCard.isHidden = false
+        
+        // move the imageView
+        UIView.animate(withDuration: duration, animations: {
+            movingCard.frame.origin = to.origin
+            movingCard.frame.size.width = to.width
+            movingCard.frame.size.height = to.height
+        },  completion: { Bool -> Void in           //this is the completion handler, it removes the views
+            movingCard.isHidden = true
+            movingCard.removeFromSuperview()
+            self.updateView()
+        })
+    }
+    
+    //MARK: Animation Delegate Protocol
+    func cardDealt(card: Card, fromPlayer playerNum: Int) {
+        let fromRect = playerStackFrames[playerNum]
+        let toRect = centerStackView.topCardFrame
+        
+        // hides the actual card that is to be moved from the stack view
+        updateView()
+        centerStackView.cardViews[centerStackView.cardViews.count-1].isHidden = true
+        
+        // moves the card image to where the actual card is, and then removes the card image, and reshows the actual card
+        animate(card: card, from: fromRect, to: toRect, isOnTop: true, duration: slapAnimationDuration)
+    }
+    
+    func cardBurned(card: Card, fromPlayer playerNum: Int) {
+        let fromRect = playerStackFrames[playerNum]
+        let toRect = centerStackView.bottomCardFrame
+        
+        // moves the card image to where the actual card is, and updates centerStack
+        animate(card: card, from: fromRect, to: toRect, isOnTop: false, duration: burnAnimationDuration)
+    }
+    
+    func claimCards(toPlayer playerNum: Int) {
+        let centerCards: [Card] = centerStackView.stack.cards
+        let centerFrames: [CGRect] = centerStackView.cardFrames
+        
+        for cardView in centerStackView.cardViews {
+            cardView.isHidden = true
+        }
+        
+        for index in centerCards.count-centerStackView.numberOfCards ..< centerCards.count {
+            if index >= 0 {
+                let cardToMove: Card = centerCards[index]
+                let fromRect: CGRect = centerFrames[index - centerCards.count + centerStackView.numberOfCards]
+                animate(card: cardToMove, from: fromRect, to: playerStackFrames[playerNum], isOnTop: true, duration: claimAnimationDuration)
+            }
+        }
+    }
+    
 }
-

@@ -11,8 +11,11 @@ import Foundation
 
 class GameLogic {
     
+    //MARK: Card Variables
     var gameDecks: [Stack]!
     
+    
+    //MARK: Game Logic Variables
     var turn: Int
     var cardsToNextTurn: Int
     var cardsDealtThisTurn: Int
@@ -27,6 +30,16 @@ class GameLogic {
         }
     }
     
+    var loss: Bool {
+        get {
+            return (gameDecks[1].cards.count == 0 || gameDecks[2].cards.count==0)
+        }
+    }
+    
+    //MARK: Animation Delegate Variable
+    var animationDelegates: [AnimationDelegate]
+    
+    //MARK: Initializer
     init() {
         let fullDeck = Stack()
         fullDeck.setFullDeck()
@@ -46,50 +59,46 @@ class GameLogic {
         
         playerToWinDeck = 0
         stackSlapped = false
+        
+        animationDelegates = [AnimationDelegate]()
     }
     
+    //MARK: Animation Delegation
+    func addAnimationDelegate(_ animationDelegate: AnimationDelegate) {
+        self.animationDelegates.append(animationDelegate)
+    }
     
+    func animateCardDealt(card: Card, playerNum: Int) {
+        for animationDelegate in animationDelegates {
+            animationDelegate.cardDealt(card: card, fromPlayer: playerNum)
+        }
+    }
+    
+    func animateCardBurned(card: Card, playerNum:Int) {
+        for animationDelegate in animationDelegates {
+            animationDelegate.cardBurned(card: card, fromPlayer: playerNum)
+        }
+    }
+    
+    func animateClaimCards(playerNum: Int) {
+        for animationDelegate in animationDelegates {
+            animationDelegate.claimCards(toPlayer: playerNum)
+        }
+    }
+    
+    //MARK: Player actions
     func playerDeal(playerNum: Int) {
         if (turn%2 == playerNum%2) && (playerToWinDeck == 0) {          // if it is playerNum's turn
-            //Should play sound
-            SoundController.cardDeal()
-            
-
- 
- 
-            let dealtCard = gameDecks[playerNum].cards.remove(at: 0)
-            gameDecks[0].cards.append(dealtCard)
-            gameDecks[0].cardFromPlayer.append(playerNum)
-            
-            cardsDealtThisTurn += 1
-            
-            if(dealtCard.rank > 10) {                   //if a face card is played
-                turn += 1
-                cardsDealtThisTurn = 0
-                cardsToNextTurn = dealtCard.rank - 10
-                faceCardDealt = true
-            }
-            else if(!faceCardDealt && cardsDealtThisTurn >= cardsToNextTurn) {  //if no more cards need to be dealt, and there is no face card dealt this round
-                turn += 1
-                cardsDealtThisTurn = 0
-            }
-            else if(faceCardDealt && cardsDealtThisTurn >= cardsToNextTurn) {   //if no more cards need to be dealt, and there was a face card dealt this round
-                if( playerNum == 1 ) {         //if player 1 dealt the last number card
-                    playerToWinDeck = 2
-                }
-                else if ( playerNum == 2 ) {       //if player 2 dealt the last number card
-                   playerToWinDeck = 1
-                }
-            }
+            //deals the card and animates it
+            successfulDeal(playerNum: playerNum)
         }
         else {                                // if it is not playerNum's turn
-            //burns a card
+            //burns a card and animates it
             burnCard(playerNum)
         }
     }
     
     func playerSlap(playerNum: Int) {
-        SoundController.slap()
         if (gameDecks[0].slappable) {       //if the slap was correct
             SoundController.slap()
             if(!stackSlapped) {                 //if stack hasn't been slapped before
@@ -98,7 +107,7 @@ class GameLogic {
             }
         }
         else {                              //if the slap was wrong
-            //burns a card
+            //burns a card and animates it
             burnCard(playerNum)
         }
     }
@@ -106,6 +115,7 @@ class GameLogic {
     func claimDeck() {
         if( playerToWinDeck != 0 ) {
             print("cards go to \(playerToWinDeck)")
+            animateClaimCards(playerNum: playerToWinDeck)
             gameDecks[playerToWinDeck].cards.append(contentsOf: gameDecks[0].cards)
             gameDecks[0].cards.removeAll()
             
@@ -126,11 +136,44 @@ class GameLogic {
         // moves the card over
         let burntCard = gameDecks[playerNum].cards.remove(at: 0)
         gameDecks[0].cards.insert(burntCard, at: 0)
-        gameDecks[0].cardFromPlayer.insert(playerNum, at: 0)
-        print("player \(playerNum) burnt a \(burntCard.name)")
+        
+        //animates the movement of the cards through the animationDelegates
+        animateCardBurned(card: burntCard, playerNum: playerNum)
     }
     
-    func checkLoss() -> Bool {
-        return (gameDecks[1].cards.count == 0 || gameDecks[2].cards.count==0)
+    func successfulDeal(playerNum: Int) {
+        //Should play sound
+        SoundController.cardDeal()
+        
+        
+        //moves the card
+        let dealtCard = gameDecks[playerNum].cards.remove(at: 0)
+        gameDecks[0].cards.append(dealtCard)
+        
+        
+        //animates the movement of the cards through the animationDelegates
+        animateCardDealt(card: dealtCard, playerNum: playerNum)
+        
+        //deals with logic about game turns and face cards etc.
+        cardsDealtThisTurn += 1
+        if(dealtCard.rank > 10) {                   //if a face card is played
+            turn += 1
+            cardsDealtThisTurn = 0
+            cardsToNextTurn = dealtCard.rank - 10
+            faceCardDealt = true
+        }
+        else if(!faceCardDealt && cardsDealtThisTurn >= cardsToNextTurn) {  //if no more cards need to be dealt, and there is no face card dealt this round
+            turn += 1
+            cardsDealtThisTurn = 0
+        }
+        else if(faceCardDealt && cardsDealtThisTurn >= cardsToNextTurn) {   //if no more cards need to be dealt, and there was a face card dealt this round
+            if( playerNum == 1 ) {         //if player 1 dealt the last number card
+                playerToWinDeck = 2
+            }
+            else if ( playerNum == 2 ) {       //if player 2 dealt the last number card
+                playerToWinDeck = 1
+            }
+        }
     }
+    
 }

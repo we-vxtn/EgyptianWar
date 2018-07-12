@@ -16,6 +16,7 @@
 		180DA86120EBFA51008703C6 /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DA86020EBFA51008703C6 /* CardStackView.swift */; };
 		180DA86320EBFDCD008703C6 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DA86220EBFDCD008703C6 /* Stack.swift */; };
 		180DA86520EC0185008703C6 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DA86420EC0185008703C6 /* GameLogic.swift */; };
+		1843ACFD20F7EDDF00256112 /* AnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843ACFC20F7EDDF00256112 /* AnimationDelegate.swift */; };
 		3A2009B820F5575C002B6349 /* cardDeal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3A2009B720F5575C002B6349 /* cardDeal.mp3 */; };
 		3A2009BA20F5577A002B6349 /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2009B920F5577A002B6349 /* SoundController.swift */; };
 		3A2009BC20F56DAA002B6349 /* cardBurn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3A2009BB20F56DAA002B6349 /* cardBurn.mp3 */; };
@@ -34,6 +35,7 @@
 		180DA86020EBFA51008703C6 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
 		180DA86220EBFDCD008703C6 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		180DA86420EC0185008703C6 /* GameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
+		1843ACFC20F7EDDF00256112 /* AnimationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationDelegate.swift; sourceTree = "<group>"; };
 		3A2009B720F5575C002B6349 /* cardDeal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardDeal.mp3; sourceTree = "<group>"; };
 		3A2009B920F5577A002B6349 /* SoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
 		3A2009BB20F56DAA002B6349 /* cardBurn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardBurn.mp3; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				180DA86220EBFDCD008703C6 /* Stack.swift */,
 				180DA86420EC0185008703C6 /* GameLogic.swift */,
 				3A2009B920F5577A002B6349 /* SoundController.swift */,
+				1843ACFC20F7EDDF00256112 /* AnimationDelegate.swift */,
 				180DA85520EBF7DF008703C6 /* LaunchScreen.storyboard */,
 				180DA85820EBF7DF008703C6 /* Info.plist */,
 			);
@@ -175,6 +178,7 @@
 				180DA86320EBFDCD008703C6 /* Stack.swift in Sources */,
 				180DA84F20EBF7DE008703C6 /* EgyptianWarController.swift in Sources */,
 				3A2009BA20F5577A002B6349 /* SoundController.swift in Sources */,
+				1843ACFD20F7EDDF00256112 /* AnimationDelegate.swift in Sources */,
 				180DA85F20EBF988008703C6 /* Card.swift in Sources */,
 				180DA84D20EBF7DE008703C6 /* AppDelegate.swift in Sources */,
 			);
