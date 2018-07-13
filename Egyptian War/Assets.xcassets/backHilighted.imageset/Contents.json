@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "cardBackHilighted.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "HilightedDeal.pdf",
       "scale" : "2x"
     },
     {

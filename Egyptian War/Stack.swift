@@ -11,7 +11,6 @@ import Foundation
 class Stack {
     
     var cards: [Card]
-    var cardFromPlayer: [Int]!
     
     var slappable: Bool {
         get {
@@ -29,7 +28,6 @@ class Stack {
     
     init() {
         cards = [Card]()
-        cardFromPlayer = [Int]()
     }
     
     func setFullDeck() {
