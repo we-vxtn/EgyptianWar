@@ -29,10 +29,8 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate {
     @IBOutlet weak var player1TurnIndicator: UIButton!
     @IBOutlet weak var player2TurnIndicator: UIButton!
     
-    
+    // the center stack custom view
     @IBOutlet weak var centerStackView: CardStackView!
-    
-    
     
     //MARK: Game Variables
     var game: GameLogic!

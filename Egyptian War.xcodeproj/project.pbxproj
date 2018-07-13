@@ -19,6 +19,7 @@
 		1843ACFD20F7EDDF00256112 /* AnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843ACFC20F7EDDF00256112 /* AnimationDelegate.swift */; };
 		18A79C0C20F81D2A00D74A69 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A79C0B20F81D2A00D74A69 /* MainMenuViewController.swift */; };
 		18A79C0E20F8216000D74A69 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A79C0D20F8216000D74A69 /* SettingsViewController.swift */; };
+		18A79C1220F8279D00D74A69 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A79C1120F8279D00D74A69 /* Settings.swift */; };
 		3A2009B820F5575C002B6349 /* cardDeal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3A2009B720F5575C002B6349 /* cardDeal.mp3 */; };
 		3A2009BA20F5577A002B6349 /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2009B920F5577A002B6349 /* SoundController.swift */; };
 		3A2009BC20F56DAA002B6349 /* cardBurn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3A2009BB20F56DAA002B6349 /* cardBurn.mp3 */; };
@@ -40,6 +41,7 @@
 		1843ACFC20F7EDDF00256112 /* AnimationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationDelegate.swift; sourceTree = "<group>"; };
 		18A79C0B20F81D2A00D74A69 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		18A79C0D20F8216000D74A69 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		18A79C1120F8279D00D74A69 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3A2009B720F5575C002B6349 /* cardDeal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardDeal.mp3; sourceTree = "<group>"; };
 		3A2009B920F5577A002B6349 /* SoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
 		3A2009BB20F56DAA002B6349 /* cardBurn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardBurn.mp3; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				3A2009B020F406F1002B6349 /* SoundEffects */,
 				180DA85E20EBF988008703C6 /* Card.swift */,
 				180DA86220EBFDCD008703C6 /* Stack.swift */,
+				18A79C1120F8279D00D74A69 /* Settings.swift */,
 				180DA86420EC0185008703C6 /* GameLogic.swift */,
 				3A2009B920F5577A002B6349 /* SoundController.swift */,
 				1843ACFC20F7EDDF00256112 /* AnimationDelegate.swift */,
@@ -188,6 +191,7 @@
 				3A2009BA20F5577A002B6349 /* SoundController.swift in Sources */,
 				1843ACFD20F7EDDF00256112 /* AnimationDelegate.swift in Sources */,
 				180DA85F20EBF988008703C6 /* Card.swift in Sources */,
+				18A79C1220F8279D00D74A69 /* Settings.swift in Sources */,
 				180DA84D20EBF7DE008703C6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
