@@ -12,19 +12,27 @@ import AVFoundation
 class EgyptianWarViewController: UIViewController, AnimationDelegate {
     
     //MARK: IBOutlet Variables
+    
+    // the card back picture, card count label, and the turn indicator
+    @IBOutlet weak var player1Controls: UIStackView!
+    @IBOutlet weak var player2Controls: UIStackView!
+    // the card back picture, and the card count label
     @IBOutlet weak var player1CardStack: UIStackView!
     @IBOutlet weak var player2CardStack: UIStackView!
-    
+    // the card count label
     @IBOutlet weak var player1CardCount: UILabel!
     @IBOutlet weak var player2CardCount: UILabel!
-    
+    // the card count back
     @IBOutlet weak var player1CardBack: UIImageView!
     @IBOutlet weak var player2CardBack: UIImageView!
+    // the turn indicator
+    @IBOutlet weak var player1TurnIndicator: UIButton!
+    @IBOutlet weak var player2TurnIndicator: UIButton!
+    
     
     @IBOutlet weak var centerStackView: CardStackView!
     
-    @IBOutlet weak var player1Controls: UIStackView!
-    @IBOutlet weak var player2Controls: UIStackView!
+    
     
     //MARK: Game Variables
     var game: GameLogic!
@@ -82,7 +90,6 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate {
     }
     
     //MARK: Slap Functions
-    
     @IBAction func player1Slap(_ sender: Any) {
         playerSlap(playerNum: 1)
     }
@@ -93,7 +100,6 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate {
     
     func playerSlap(playerNum: Int) {
         game.playerSlap(playerNum: playerNum)
-        updateView()
         checkLoss()
     }
     
@@ -115,7 +121,7 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate {
     //MARK: Update State Functions
     func updateView() {
         updateCardCounts()
-        updatePlayersStackImages()
+        updatePlayerTurnIndicators()
         updateCenterStackImages()
     }
     
@@ -123,6 +129,26 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate {
         //updates card counts
         player1CardCount.text = "x\(game.gameDecks[1].cards.count)"
         player2CardCount.text = "x\(game.gameDecks[2].cards.count)"
+    }
+    
+    func updatePlayerTurnIndicators() {
+        //changes the images based on who's turn it is to deal
+        let arrowImage = UIImage(named: "arrow")
+        
+        if(game.buttonsShouldBeHilighted == false) {    //if the stack should be claimed, and no cards should be dealt
+            player1TurnIndicator.setImage(nil, for: .normal)
+            player2TurnIndicator.setImage(nil, for: .normal)
+        }
+        else {
+            if (game.turn%2 == 1) {         //if it is player 1's turn
+                player1TurnIndicator.setImage(arrowImage, for: .normal)
+                player2TurnIndicator.setImage(nil, for: .normal)
+            }
+            else {                          //if it is player 2's turn
+                player1TurnIndicator.setImage(nil, for: .normal)
+                player2TurnIndicator.setImage(arrowImage, for: .normal)
+            }
+        }
     }
     
     func updatePlayersStackImages() {
