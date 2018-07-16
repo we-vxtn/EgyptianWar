@@ -9,10 +9,10 @@
 import UIKit
 import AVFoundation
 
-class EgyptianWarViewController: UIViewController, AnimationDelegate {
+class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuDelegate {
     
-    //MARK: IBOutlet Variables
-    
+    //MARK: Element Variables
+
     // the card back picture, card count label, and the turn indicator
     @IBOutlet weak var player1Controls: UIStackView!
     @IBOutlet weak var player2Controls: UIStackView!
@@ -32,23 +32,35 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate {
     // the center stack custom view
     @IBOutlet weak var centerStackView: CardStackView!
     
+    // gesture recognizers
+    @IBOutlet var player1ArrowSlapGesture: UITapGestureRecognizer!
+    @IBOutlet var player2ArrowSlapGesture: UITapGestureRecognizer!
+    var centerSwipePlayer1Recognizer: UISwipeGestureRecognizer!
+    var centerSwipePlayer2Recognizer: UISwipeGestureRecognizer!
+    var player1SwipeDealRecognizer: UISwipeGestureRecognizer!
+    var player2SwipeDealRecognizer: UISwipeGestureRecognizer!
+    
     //MARK: Game Variables
     var game: GameLogic!
+    var pauseMenu: PauseMenu!
     
     //MARK: UIViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         newGame()
+        pauseMenu = PauseMenu(frame: CGRect.zero)
+        self.view.addSubview(pauseMenu)
+        pauseMenu.isHidden = true
         
         // rotates the 2nd players control view by pi radians
         player2Controls.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         
         // adds swiping gesture recognizers to centerStackView so that it can move the stack when done
-        let centerSwipePlayer1Recognizer = UISwipeGestureRecognizer(target: self, action: #selector(player1Claim))
+        centerSwipePlayer1Recognizer = UISwipeGestureRecognizer(target: self, action: #selector(player1Claim))
         centerSwipePlayer1Recognizer.direction = .down
         
-        let centerSwipePlayer2Recognizer = UISwipeGestureRecognizer(target: self, action: #selector(player2Claim))
+        centerSwipePlayer2Recognizer = UISwipeGestureRecognizer(target: self, action: #selector(player2Claim))
         centerSwipePlayer2Recognizer.direction = .up
         
         centerStackView.addGestureRecognizer(centerSwipePlayer1Recognizer)
@@ -56,15 +68,15 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate {
         
         centerStackView.isUserInteractionEnabled = true
         
-        // add gesture recognizers to the player stacks so that it will deal
-        let player1DealRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(player1Deal))
-        player1DealRecognizer.direction = .up
-        player1CardStack.addGestureRecognizer(player1DealRecognizer)
+        // add gesture recognizers to the player stacks so that it will deal by swiping
+        player1SwipeDealRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(player1Deal))
+        player1SwipeDealRecognizer.direction = .up
+        player1CardStack.addGestureRecognizer(player1SwipeDealRecognizer)
         player1CardStack.isUserInteractionEnabled = true
         
-        let player2DealRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(player2Deal))
-        player2DealRecognizer.direction = .up
-        player2CardStack.addGestureRecognizer(player2DealRecognizer)
+        player2SwipeDealRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(player2Deal))
+        player2SwipeDealRecognizer.direction = .up
+        player2CardStack.addGestureRecognizer(player2SwipeDealRecognizer)
         player2CardStack.isUserInteractionEnabled = true
     }
 
@@ -194,6 +206,42 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate {
         game.addAnimationDelegate(self)
         centerStackView.stack = game.gameDecks[0]
         updateView()
+    }
+    
+    //MARK: Pausing Methods
+    @IBAction func pausePressed(_ sender: Any) {
+        print("pause pressed")
+        setUserInteraction(false)
+        pauseMenu.frame = centerStackView.superview!.convert(centerStackView.frame, to: nil)
+        pauseMenu.addPauseMenuDelegate(self)
+        pauseMenu.isHidden = false
+        pauseMenu.backgroundColor = .red
+        pauseMenu.setupSubviews()
+        
+    }
+    
+    func setUserInteraction(_ bool: Bool) {
+        //for all interactables, set user interaction = bool
+        player1Controls.isUserInteractionEnabled = bool
+        player2Controls.isUserInteractionEnabled = bool
+        centerStackView.isUserInteractionEnabled = bool
+    }
+    
+    //MARK: PauseMenuDelegate Protocol
+    func unpausePressed() {
+        print("unpause called")
+        setUserInteraction(true)
+        pauseMenu.isHidden = true
+        pauseMenu.tearDownSubviews()
+    }
+    
+    func restartPressed() {
+        newGame()
+        unpausePressed()    //we want to unpause when we restart
+    }
+    
+    func homePressed() {
+        
     }
     
     //MARK: Animation Variables

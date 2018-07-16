@@ -11,10 +11,17 @@ import AVFoundation
 
 class SettingsViewController: UIViewController {
     
+    //MARK: Sound Toggles
     @IBOutlet weak var slapSoundToggle: UISwitch!
     @IBOutlet weak var dealSoundToggle: UISwitch!
     @IBOutlet weak var burnSoundToggle: UISwitch!
     
+    //MARK: Game Logic Toggles
+    @IBOutlet weak var sandwichSlapToggle: UISwitch!
+    @IBOutlet weak var doubleSlapToggle: UISwitch!
+    @IBOutlet weak var marriageSlapToggle: UISwitch!
+    
+    //MARK: ViewController Functions
     override func viewDidLoad() {
         if(Settings.slapSound) {
             slapSoundToggle.setOn(true, animated: true)}
@@ -27,12 +34,28 @@ class SettingsViewController: UIViewController {
         if(Settings.burnSound) {
             burnSoundToggle.setOn(true, animated: true)}
         else { burnSoundToggle.setOn(false, animated: true)}
+        
+        if(Settings.sandwichSlap) {
+            sandwichSlapToggle.setOn(true, animated: true)}
+        else { sandwichSlapToggle.setOn(false, animated: true)}
+        
+        if(Settings.doubleSlap) {
+            doubleSlapToggle.setOn(true, animated: true)}
+        else { doubleSlapToggle.setOn(false, animated: true)}
+        
+        if(Settings.marriageSlap) {
+            marriageSlapToggle.setOn(true, animated: true)}
+        else { marriageSlapToggle.setOn(false, animated: true)}
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         Settings.slapSound = slapSoundToggle.isOn
         Settings.dealSound = dealSoundToggle.isOn
         Settings.burnSound = burnSoundToggle.isOn
+        
+        Settings.sandwichSlap = sandwichSlapToggle.isOn
+        Settings.doubleSlap = doubleSlapToggle.isOn
+        Settings.marriageSlap = marriageSlapToggle.isOn
         
         super.viewWillDisappear(animated)
     }

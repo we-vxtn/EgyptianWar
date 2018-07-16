@@ -14,15 +14,23 @@ class Stack {
     
     var slappable: Bool {
         get {
-            if (cards.count-2 >= 0) && (cards[cards.count-1].rank == cards[cards.count-2].rank) {
-                return true
+            if (Settings.doubleSlap && cards.count-2 >= 0) {            //if the setting is on and the cards to check are in bounds
+                if (cards[cards.count-1].rank == cards[cards.count-2].rank) {
+                    return true
+                }
+                
             }
-            else if (cards.count-3 >= 0) && (cards[cards.count-1].rank == cards[cards.count-3].rank) {
-                return true
+            if (Settings.sandwichSlap && cards.count-3 >= 0) {          //if the setting is on and the cards to check are in bounds
+                if  (cards[cards.count-1].rank == cards[cards.count-3].rank) {
+                    return true
+                }
             }
-            else {
-                return false
+            if (Settings.marriageSlap && cards.count-2 >= 0) {     //if the setting is on and the cards to check are in bounds
+                if (cards[cards.count-1].rank == 13 && cards[cards.count-2].rank == 12) || (cards[cards.count-1].rank == 12 && cards[cards.count-2].rank == 13) {
+                    return true
+                }
             }
+            return false
         }
     }
     
