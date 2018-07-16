@@ -28,6 +28,8 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
     // the turn indicator
     @IBOutlet weak var player1TurnIndicator: UIButton!
     @IBOutlet weak var player2TurnIndicator: UIButton!
+    // the background imageView
+    @IBOutlet weak var backgroundView: UIImageView!
     
     // the center stack custom view
     @IBOutlet weak var centerStackView: CardStackView!
@@ -266,7 +268,7 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
         
         // moves the card to the bottom, if isOnTop is false
         if(!isOnTop) {
-            self.view.sendSubview(toBack: movingCard)
+            self.view.insertSubview(movingCard, aboveSubview: backgroundView)
         }
         
         // set the imageView's location
@@ -305,6 +307,8 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
     func cardBurned(card: Card, fromPlayer playerNum: Int) {
         let fromRect = playerStackFrames[playerNum]
         let toRect = centerStackView.bottomCardFrame
+        print("from: \(fromRect)")
+        print("to  : \(toRect)")
         
         // moves the card image to where the actual card is, and updates centerStack
         animate(card: card, from: fromRect, to: toRect, isOnTop: false, duration: burnAnimationDuration)
