@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol PauseMenuDelegate: AnyObject {
+protocol MenuDelegate: AnyObject {
     func unpausePressed()
     func homePressed()
     func restartPressed()
