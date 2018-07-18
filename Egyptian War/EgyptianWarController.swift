@@ -319,8 +319,6 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
     func cardBurned(card: Card, fromPlayer playerNum: Int) {
         let fromRect = playerStackFrames[playerNum]
         let toRect = centerStackView.bottomCardFrame
-        print("from: \(fromRect)")
-        print("to  : \(toRect)")
         
         // moves the card image to where the actual card is, and updates centerStack
         animate(card: card, from: fromRect, to: toRect, isOnTop: false, duration: burnAnimationDuration)

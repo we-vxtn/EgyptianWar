@@ -14,7 +14,6 @@ class PauseMenu: UIView {
     let stackViewSpacing: CGFloat = 10
     let elementHeight: CGFloat = 35
     
-    var border: UIImageView!
     var stackView: UIStackView!
     var delegates: [PauseMenuDelegate]
     
@@ -40,19 +39,7 @@ class PauseMenu: UIView {
     }
     
     func setupSubviews() {
-        // setup the background
-        /*border = UIImageView()
-        border.contentMode = .scaleToFill
-        border.image = UIImage(named: "pauseMenuBackground")
-        border.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(border)
-        border.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        //border.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        border.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        //border.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        border.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
-        border.heightAnchor.constraint(equalToConstant: self.frame.height).isActive = true*/
-        
+        if (stackView != nil) {return}      //prevents setup from being called multiple times
         
         // create the stack view
         stackView = UIStackView()
@@ -169,9 +156,10 @@ class PauseMenu: UIView {
         Settings.dealSound = dealSoundToggle.isOn
         Settings.burnSound = burnSoundToggle.isOn
         
-        for subview in self.subviews {
+        for subview in stackView.subviews {
             subview.removeFromSuperview()
         }
+        stackView = nil
     }
     
     @objc func unpausePressed() {
