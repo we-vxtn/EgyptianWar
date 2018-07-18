@@ -30,6 +30,7 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
     @IBOutlet weak var player2TurnIndicator: UIButton!
     // the background imageView
     @IBOutlet weak var backgroundView: UIImageView!
+    @IBOutlet weak var screenBlur: UIView!
     
     // the center stack custom view
     @IBOutlet weak var centerStackView: CardStackView!
@@ -212,13 +213,20 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
     
     //MARK: Pausing Methods
     @IBAction func pausePressed(_ sender: Any) {
-        print("pause pressed")
         setUserInteraction(false)
+        screenBlur.isHidden = false
         pauseMenu.frame = centerStackView.superview!.convert(centerStackView.frame, to: nil)
+        
+        /*pauseMenu.translatesAutoresizingMaskIntoConstraints = false
+        pauseMenu.leadingAnchor.constraint(equalTo: pauseMenu.superview!.leadingAnchor, constant: 50).isActive = true
+        pauseMenu.trailingAnchor.constraint(equalTo: pauseMenu.superview!.trailingAnchor, constant: -50).isActive = true
+        pauseMenu.topAnchor.constraint(equalTo: pauseMenu.superview!.topAnchor, constant: 150).isActive = true
+        pauseMenu.bottomAnchor.constraint(equalTo: pauseMenu.superview!.bottomAnchor, constant: -150).isActive = true
+        pauseMenu.translatesAutoresizingMaskIntoConstraints = false*/
+        
         pauseMenu.addPauseMenuDelegate(self)
-        pauseMenu.isHidden = false
-        pauseMenu.backgroundColor = .red
         pauseMenu.setupSubviews()
+        pauseMenu.isHidden = false
         
     }
     
@@ -231,7 +239,7 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
     
     //MARK: PauseMenuDelegate Protocol
     func unpausePressed() {
-        print("unpause called")
+        screenBlur.isHidden = true
         setUserInteraction(true)
         pauseMenu.isHidden = true
         pauseMenu.tearDownSubviews()
@@ -243,6 +251,10 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
     }
     
     func homePressed() {
+        unpausePressed()
+        let mainMenuView  = self.storyboard!.instantiateViewController(withIdentifier: "MainMenuView") as! MainMenuViewController
+        self.present(mainMenuView, animated: true, completion: nil)
+
         
     }
     

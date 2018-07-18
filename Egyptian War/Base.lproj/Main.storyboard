@@ -15,7 +15,7 @@
         <!--Main Menu View Controller-->
         <scene sceneID="AFn-3G-VlV">
             <objects>
-                <viewController id="9H2-cw-Flp" customClass="MainMenuViewController" customModule="Egyptian_War" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MainMenuView" storyboardIdentifier="MainMenuView" id="9H2-cw-Flp" customClass="MainMenuViewController" customModule="Egyptian_War" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z2L-F0-3bX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,10 +27,13 @@
                                 <rect key="frame" x="15" y="59" width="345" height="704"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="titleImage" translatesAutoresizingMaskIntoConstraints="NO" id="9T1-tm-TZr">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="281.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="345"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="9T1-tm-TZr" secondAttribute="height" multiplier="1:1" id="ffp-7p-9FH"/>
+                                        </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7Eq-yh-K2J">
-                                        <rect key="frame" x="0.0" y="296.66666666666669" width="345" height="135"/>
+                                        <rect key="frame" x="0.0" y="360" width="345" height="135"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWh-S0-fGX">
                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="60"/>
@@ -39,7 +42,7 @@
                                                     <constraint firstAttribute="height" constant="60" id="sCJ-7E-d47"/>
                                                 </constraints>
                                                 <state key="normal" title="Play Game">
-                                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="BYZ-38-t0r" kind="presentation" modalTransitionStyle="coverVertical" id="ggn-93-03J"/>
@@ -49,7 +52,7 @@
                                                 <rect key="frame" x="0.0" y="75" width="345" height="60"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Settings">
-                                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="jxr-8s-iwD" kind="presentation" modalTransitionStyle="coverVertical" id="G8D-bh-dww"/>
@@ -62,12 +65,11 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUB-i0-Jy0" userLabel="spaceTaker">
-                                        <rect key="frame" x="0.0" y="446.66666666666674" width="345" height="257.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="510" width="345" height="194"/>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="IUB-i0-Jy0" firstAttribute="height" secondItem="AxA-vR-IfQ" secondAttribute="height" priority="1" id="6tN-RD-h0I"/>
-                                    <constraint firstItem="9T1-tm-TZr" firstAttribute="height" secondItem="AxA-vR-IfQ" secondAttribute="height" multiplier="0.4" id="C6j-Cc-OMA"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -101,21 +103,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qkL-v0-Ptg">
-                                <rect key="frame" x="15" y="59" width="345" height="704"/>
+                                <rect key="frame" x="15.333333333333343" y="59" width="344.66666666666663" height="704"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="253" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bPp-Bk-t8N" userLabel="Player 2">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="164.66666666666666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="344.66666666666669" height="164.33333333333334"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SA3-It-Vpb" userLabel="player 2 stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="164.66666666666666"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="164.33333333333334" height="164.33333333333334"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="TBl-tK-eF9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="136" height="164.66666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="135.66666666666666" height="164.33333333333334"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="x52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYE-j3-GYg" userLabel="player 2 card count">
-                                                        <rect key="frame" x="136" y="0.0" width="28.666666666666657" height="164.66666666666666"/>
+                                                        <rect key="frame" x="135.66666666666666" y="0.0" width="28.666666666666657" height="164.33333333333334"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -124,13 +126,14 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHa-1L-tUh" userLabel="player 2 slap">
-                                                <rect key="frame" x="180.66666666666663" y="0.0" width="164.33333333333337" height="164.66666666666666"/>
+                                                <rect key="frame" x="180.33333333333331" y="0.0" width="164.33333333333331" height="164.33333333333334"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="nHa-1L-tUh" secondAttribute="height" multiplier="1:1" id="NTa-HZ-UA1"/>
                                                 </constraints>
                                                 <state key="normal" image="arrow"/>
                                                 <connections>
                                                     <action selector="player2Slap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9RU-et-zFh"/>
+                                                    <outletCollection property="gestureRecognizers" destination="iRj-wA-YoV" appends="YES" id="gd9-BX-wmC"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -138,59 +141,44 @@
                                             <constraint firstAttribute="height" secondItem="nHa-1L-tUh" secondAttribute="height" id="tpx-cF-Mqc"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jXW-pF-NbQ">
-                                        <rect key="frame" x="0.0" y="164.66666666666663" width="345" height="372"/>
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Mkl-9Q-Q2D" customClass="CardStackView" customModule="Egyptian_War" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="164.33333333333334" width="344.66666666666669" height="372.33333333333326"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Mkl-9Q-Q2D" customClass="CardStackView" customModule="Egyptian_War" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="315" height="372"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZB2-h1-9sQ" userLabel="player slaps">
+                                                <rect key="frame" x="0.0" y="-0.33333333333334281" width="344.66666666666669" height="372.33333333333331"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZB2-h1-9sQ" userLabel="player slaps">
-                                                        <rect key="frame" x="0.0" y="-0.33333333333334281" width="315" height="372"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMv-jw-6ge" userLabel="player2Slap">
-                                                                <rect key="frame" x="0.0" y="0.0" width="315" height="186"/>
-                                                                <connections>
-                                                                    <outletCollection property="gestureRecognizers" destination="AyC-W0-Rk9" appends="YES" id="ziK-uQ-pII"/>
-                                                                </connections>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThQ-TB-paQ" userLabel="player1Slap">
-                                                                <rect key="frame" x="0.0" y="186" width="315" height="186"/>
-                                                                <connections>
-                                                                    <outletCollection property="gestureRecognizers" destination="bCi-zW-2iM" appends="YES" id="72P-RP-TgF"/>
-                                                                </connections>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMv-jw-6ge" userLabel="player2Slap">
+                                                        <rect key="frame" x="0.0" y="0.0" width="344.66666666666669" height="186.33333333333334"/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="AyC-W0-Rk9" appends="YES" id="ziK-uQ-pII"/>
+                                                        </connections>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThQ-TB-paQ" userLabel="player1Slap">
+                                                        <rect key="frame" x="0.0" y="186.33333333333337" width="344.66666666666669" height="186"/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="bCi-zW-2iM" appends="YES" id="72P-RP-TgF"/>
+                                                        </connections>
+                                                    </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <gestureRecognizers/>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4te-b5-czG">
-                                                <rect key="frame" x="315" y="0.0" width="30" height="372"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="30" id="S4U-if-N8p"/>
-                                                </constraints>
-                                                <state key="normal" title="Pause"/>
-                                                <connections>
-                                                    <action selector="pausePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PpE-W1-Sgb"/>
-                                                </connections>
-                                            </button>
+                                            </stackView>
                                         </subviews>
-                                    </stackView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="253" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JOB-75-hX6" userLabel="Player 1">
-                                        <rect key="frame" x="0.0" y="536.66666666666663" width="345" height="167.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="536.66666666666663" width="344.66666666666669" height="167.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cA-G6-XGC" userLabel="player 1 stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="167.66666666666666" height="167.33333333333334"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="167.33333333333334" height="167.33333333333334"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="OJ9-WZ-I7X">
-                                                        <rect key="frame" x="0.0" y="0.0" width="139" height="167.33333333333334"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138.66666666666666" height="167.33333333333334"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="x52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZy-Ht-pbO" userLabel="player 1 card count">
-                                                        <rect key="frame" x="139" y="0.0" width="28.666666666666657" height="167.33333333333334"/>
+                                                        <rect key="frame" x="138.66666666666666" y="0.0" width="28.666666666666657" height="167.33333333333334"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -199,13 +187,14 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqH-sw-mos" userLabel="player 1 slap">
-                                                <rect key="frame" x="177.66666666666663" y="0.0" width="167.33333333333337" height="167.33333333333334"/>
+                                                <rect key="frame" x="177.33333333333331" y="0.0" width="167.33333333333331" height="167.33333333333334"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="JqH-sw-mos" secondAttribute="height" multiplier="1:1" id="O7a-9l-eCS"/>
                                                 </constraints>
                                                 <state key="normal" image="arrow"/>
                                                 <connections>
                                                     <action selector="player1Slap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e5X-1s-Ocf"/>
+                                                    <outletCollection property="gestureRecognizers" destination="rTC-J9-smJ" appends="YES" id="KE6-Qx-XVu"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -215,15 +204,23 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <view hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eoa-I7-qMM" userLabel="screenBlur">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qkL-v0-Ptg" secondAttribute="trailing" constant="15" id="40u-dY-La0"/>
+                            <constraint firstItem="eoa-I7-qMM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HHx-zW-p3k"/>
                             <constraint firstItem="Cmw-Mg-Dmg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Kpw-fN-cgP"/>
+                            <constraint firstAttribute="trailing" secondItem="eoa-I7-qMM" secondAttribute="trailing" id="Zbb-vc-cxA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qkL-v0-Ptg" secondAttribute="bottom" constant="15" id="bp4-X4-3OH"/>
                             <constraint firstAttribute="bottom" secondItem="Cmw-Mg-Dmg" secondAttribute="bottom" id="cDj-EP-EPJ"/>
                             <constraint firstItem="Cmw-Mg-Dmg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="daj-gM-qgp"/>
                             <constraint firstItem="qkL-v0-Ptg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="efo-sD-9UW"/>
+                            <constraint firstAttribute="bottom" secondItem="eoa-I7-qMM" secondAttribute="bottom" id="kL0-WR-o4X"/>
+                            <constraint firstItem="eoa-I7-qMM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qEY-Hq-A39"/>
                             <constraint firstItem="qkL-v0-Ptg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="qQj-Ka-3Sq"/>
                             <constraint firstItem="Cmw-Mg-Dmg" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="zqL-IJ-lqm"/>
                         </constraints>
@@ -244,19 +241,30 @@
                         <outlet property="player2CardStack" destination="SA3-It-Vpb" id="Sat-ic-V4Q"/>
                         <outlet property="player2Controls" destination="bPp-Bk-t8N" id="e30-aW-pbf"/>
                         <outlet property="player2TurnIndicator" destination="nHa-1L-tUh" id="5Am-mH-DV2"/>
+                        <outlet property="screenBlur" destination="eoa-I7-qMM" id="UAI-OK-4jB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="AyC-W0-Rk9" userLabel="player 2 slap gesture">
-                    <connections>
-                        <action selector="player2Slap:" destination="BYZ-38-t0r" id="C6y-i4-HXx"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <tapGestureRecognizer id="bCi-zW-2iM" userLabel="player 1 slap gesture">
                     <connections>
                         <action selector="player1Slap:" destination="BYZ-38-t0r" id="6HI-C8-XoM"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="AyC-W0-Rk9" userLabel="player 2 slap gesture">
+                    <connections>
+                        <action selector="player2Slap:" destination="BYZ-38-t0r" id="C6y-i4-HXx"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="rTC-J9-smJ" userLabel="player 1 pause gesture">
+                    <connections>
+                        <action selector="pausePressed:" destination="BYZ-38-t0r" id="Aod-et-hh5"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="iRj-wA-YoV" userLabel="player 2 pause gesture">
+                    <connections>
+                        <action selector="pausePressed:" destination="BYZ-38-t0r" id="ZTl-4O-OrG"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="141.59999999999999" y="103.44827586206897"/>
         </scene>
@@ -480,6 +488,6 @@
         <image name="arrow" width="1083" height="816"/>
         <image name="back" width="345" height="528"/>
         <image name="background" width="375" height="525"/>
-        <image name="titleImage" width="728" height="546"/>
+        <image name="titleImage" width="540" height="540"/>
     </resources>
 </document>

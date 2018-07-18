@@ -10,9 +10,11 @@ import UIKit
 
 class PauseMenu: UIView {
     
+    let borderSpacing: CGFloat = 0.075       //ratio of the pausemenu's dimension that should be the border
     let stackViewSpacing: CGFloat = 10
     let elementHeight: CGFloat = 35
     
+    var border: UIImageView!
     var stackView: UIStackView!
     var delegates: [PauseMenuDelegate]
     
@@ -38,6 +40,20 @@ class PauseMenu: UIView {
     }
     
     func setupSubviews() {
+        // setup the background
+        /*border = UIImageView()
+        border.contentMode = .scaleToFill
+        border.image = UIImage(named: "pauseMenuBackground")
+        border.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(border)
+        border.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        //border.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        border.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        //border.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        border.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
+        border.heightAnchor.constraint(equalToConstant: self.frame.height).isActive = true*/
+        
+        
         // create the stack view
         stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,15 +61,16 @@ class PauseMenu: UIView {
         stackView.distribution = .fill
         stackView.spacing = stackViewSpacing
         self.addSubview(stackView)
-        stackView.leadingAnchor.constraint(equalTo: stackView.superview!.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: stackView.superview!.trailingAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: stackView.superview!.topAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: stackView.superview!.bottomAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: stackView.superview!.leadingAnchor, constant: borderSpacing*self.frame.width).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: stackView.superview!.trailingAnchor, constant: -borderSpacing*self.frame.width).isActive = true
+        stackView.topAnchor.constraint(equalTo: stackView.superview!.topAnchor, constant: borderSpacing*self.frame.height).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: stackView.superview!.bottomAnchor, constant: -borderSpacing*self.frame.height).isActive = true
         
         // create the top label
         let pausedLabel = UILabel()
         pausedLabel.text = "paused"
-        pausedLabel.backgroundColor = .white
+        pausedLabel.textColor = .white
+        pausedLabel.font = UIFont.boldSystemFont(ofSize: 40)
         pausedLabel.textAlignment = .center
         pausedLabel.heightAnchor.constraint(equalToConstant: elementHeight).isActive = true
         stackView.addArrangedSubview(pausedLabel)
@@ -68,22 +85,19 @@ class PauseMenu: UIView {
         
         let unpauseButton = UIButton()
         unpauseButton.setTitle("unpause", for: .normal)
-        unpauseButton.setTitleColor(.black, for: .normal)
-        unpauseButton.backgroundColor = .white
+        unpauseButton.setTitleColor(.white, for: .normal)
         unpauseButton.addTarget(self, action: #selector(unpausePressed), for: .touchUpInside)
         barStackView.addArrangedSubview(unpauseButton)
         
         let homeButton = UIButton()
         homeButton.setTitle("home", for: .normal)
-        homeButton.setTitleColor(.black, for: .normal)
-        homeButton.backgroundColor = .white
+        homeButton.setTitleColor(.white, for: .normal)
         homeButton.addTarget(self, action: #selector(homePressed), for: .touchUpInside)
         barStackView.addArrangedSubview(homeButton)
         
         let restartButton = UIButton()
         restartButton.setTitle("restart", for: .normal)
-        restartButton.setTitleColor(.black, for: .normal)
-        restartButton.backgroundColor = .white
+        restartButton.setTitleColor(.white, for: .normal)
         restartButton.addTarget(self, action: #selector(restartPressed), for: .touchUpInside)
         barStackView.addArrangedSubview(restartButton)
         
@@ -103,7 +117,7 @@ class PauseMenu: UIView {
         let label1 = UILabel()
         label1.text = "slap sound"
         settings1.addArrangedSubview(label1)
-        label1.backgroundColor = .white
+        label1.textColor = .white
         
         slapSoundToggle = UISwitch()
         slapSoundToggle.isOn = Settings.slapSound
@@ -119,7 +133,7 @@ class PauseMenu: UIView {
         let label2 = UILabel()
         label2.text = "deal sound"
         settings2.addArrangedSubview(label2)
-        label2.backgroundColor = .white
+        label2.textColor = .white
         
         dealSoundToggle = UISwitch()
         dealSoundToggle.isOn = Settings.dealSound
@@ -135,7 +149,7 @@ class PauseMenu: UIView {
         let label3 = UILabel()
         label3.text = "burn sound"
         settings3.addArrangedSubview(label3)
-        label3.backgroundColor = .white
+        label3.textColor = .white
         
         burnSoundToggle = UISwitch()
         burnSoundToggle.isOn = Settings.burnSound
