@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuDelegate {
+class EgyptianWarViewController: UIViewController, AnimationDelegate, MenuDelegate {
     
     //MARK: Element Variables
 
@@ -46,15 +46,13 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
     //MARK: Game Variables
     var game: GameLogic!
     var pauseMenu: PauseMenu!
+    var winMenu: WinMenu!
     
     //MARK: UIViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         newGame()
-        pauseMenu = PauseMenu(frame: CGRect.zero)
-        self.view.addSubview(pauseMenu)
-        pauseMenu.isHidden = true
         
         // rotates the 2nd players control view by pi radians
         player2Controls.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
@@ -194,14 +192,22 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
     func checkLoss() {
         if(game.loss) {
             if(game.gameDecks[1].cards.count == 0) {
-                print("player 2 wins")
+                gameOver(winner: 2)
             }
             else {
-                print("player 1 wins")
+                gameOver(winner: 1)
             }
-            sleep(2)
-            newGame()
         }
+    }
+    
+    func gameOver(winner: Int) {
+        setUserInteraction(false)
+        screenBlur.isHidden = false
+        winMenu = WinMenu(frame: centerStackView.superview!.convert(centerStackView.frame, to: nil), winner: winner)
+        self.view.addSubview(winMenu)
+        winMenu.addMenuDelegate(self)
+        winMenu.setupSubviews()
+        winMenu.isHidden = false
     }
     
     func newGame() {
@@ -213,21 +219,15 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
     
     //MARK: Pausing Methods
     @IBAction func pausePressed(_ sender: Any) {
+        if(pauseMenu != nil) {return}       //prevents pauseMenu from being initialized multiple times because the method is called on hold
+        
         setUserInteraction(false)
         screenBlur.isHidden = false
-        pauseMenu.frame = centerStackView.superview!.convert(centerStackView.frame, to: nil)
-        
-        /*pauseMenu.translatesAutoresizingMaskIntoConstraints = false
-        pauseMenu.leadingAnchor.constraint(equalTo: pauseMenu.superview!.leadingAnchor, constant: 50).isActive = true
-        pauseMenu.trailingAnchor.constraint(equalTo: pauseMenu.superview!.trailingAnchor, constant: -50).isActive = true
-        pauseMenu.topAnchor.constraint(equalTo: pauseMenu.superview!.topAnchor, constant: 150).isActive = true
-        pauseMenu.bottomAnchor.constraint(equalTo: pauseMenu.superview!.bottomAnchor, constant: -150).isActive = true
-        pauseMenu.translatesAutoresizingMaskIntoConstraints = false*/
-        
-        pauseMenu.addPauseMenuDelegate(self)
+        pauseMenu = PauseMenu(frame: centerStackView.superview!.convert(centerStackView.frame, to: nil))
+        self.view.addSubview(pauseMenu)
+        pauseMenu.addMenuDelegate(self)
         pauseMenu.setupSubviews()
         pauseMenu.isHidden = false
-        
     }
     
     func setUserInteraction(_ bool: Bool) {
@@ -237,25 +237,32 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, PauseMenuD
         centerStackView.isUserInteractionEnabled = bool
     }
     
-    //MARK: PauseMenuDelegate Protocol
-    func unpausePressed() {
+    //MARK: MenuDelegate Protocol
+    func dismissPauseMenu() {
         screenBlur.isHidden = true
         setUserInteraction(true)
         pauseMenu.isHidden = true
         pauseMenu.tearDownSubviews()
+        pauseMenu.removeFromSuperview()
+        pauseMenu = nil
+    }
+    
+    func dismissWinMenu() {
+        screenBlur.isHidden = true
+        setUserInteraction(true)
+        winMenu.isHidden = true
+        winMenu.tearDownSubviews()
+        winMenu.removeFromSuperview()
+        winMenu = nil
     }
     
     func restartPressed() {
         newGame()
-        unpausePressed()    //we want to unpause when we restart
     }
     
     func homePressed() {
-        unpausePressed()
         let mainMenuView  = self.storyboard!.instantiateViewController(withIdentifier: "MainMenuView") as! MainMenuViewController
         self.present(mainMenuView, animated: true, completion: nil)
-
-        
     }
     
     //MARK: Animation Variables

@@ -15,23 +15,23 @@ class PauseMenu: UIView {
     let elementHeight: CGFloat = 35
     
     var stackView: UIStackView!
-    var delegates: [PauseMenuDelegate]
+    var delegates: [MenuDelegate]
     
     var slapSoundToggle: UISwitch!
     var dealSoundToggle: UISwitch!
     var burnSoundToggle: UISwitch!
 
     override init(frame: CGRect) {
-        delegates = [PauseMenuDelegate]()
+        delegates = [MenuDelegate]()
         super.init(frame: frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        delegates = [PauseMenuDelegate]()
+        delegates = [MenuDelegate]()
         super.init(coder: aDecoder)
     }
     
-    func addPauseMenuDelegate(_ newDelegate: PauseMenuDelegate) {
+    func addMenuDelegate(_ newDelegate: MenuDelegate) {
         for addedDelegate in delegates {
             if ((addedDelegate as AnyObject) === (newDelegate as AnyObject)) { return }   //makes sure delegates arent added twice
         }
@@ -164,18 +164,20 @@ class PauseMenu: UIView {
     
     @objc func unpausePressed() {
         for delegate in delegates {
-            delegate.unpausePressed()
+            delegate.dismissPauseMenu?()
         }
     }
     
     @objc func homePressed() {
         for delegate in delegates {
+            delegate.dismissPauseMenu?()
             delegate.homePressed()
         }
     }
     
     @objc func restartPressed() {
         for delegate in delegates {
+            delegate.dismissPauseMenu?()
             delegate.restartPressed()
         }
     }

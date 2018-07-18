@@ -144,9 +144,8 @@
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Mkl-9Q-Q2D" customClass="CardStackView" customModule="Egyptian_War" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="164.33333333333334" width="344.66666666666669" height="372.33333333333326"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZB2-h1-9sQ" userLabel="player slaps">
-                                                <rect key="frame" x="0.0" y="-0.33333333333334281" width="344.66666666666669" height="372.33333333333331"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZB2-h1-9sQ" userLabel="player slaps">
+                                                <rect key="frame" x="0.0" y="-0.33333333333334281" width="344.66666666666669" height="372.66666666666674"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMv-jw-6ge" userLabel="player2Slap">
                                                         <rect key="frame" x="0.0" y="0.0" width="344.66666666666669" height="186.33333333333334"/>
@@ -155,16 +154,29 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThQ-TB-paQ" userLabel="player1Slap">
-                                                        <rect key="frame" x="0.0" y="186.33333333333337" width="344.66666666666669" height="186"/>
+                                                        <rect key="frame" x="0.0" y="186.33333333333331" width="344.66666666666669" height="186.33333333333331"/>
                                                         <connections>
                                                             <outletCollection property="gestureRecognizers" destination="bCi-zW-2iM" appends="YES" id="72P-RP-TgF"/>
                                                         </connections>
                                                     </view>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="ThQ-TB-paQ" firstAttribute="height" secondItem="dMv-jw-6ge" secondAttribute="height" id="E2h-ZD-nA5"/>
+                                                    <constraint firstItem="ThQ-TB-paQ" firstAttribute="leading" secondItem="ZB2-h1-9sQ" secondAttribute="leading" id="ZJA-vJ-KR2"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ThQ-TB-paQ" secondAttribute="trailing" id="ikc-zn-8br"/>
+                                                    <constraint firstItem="dMv-jw-6ge" firstAttribute="leading" secondItem="ZB2-h1-9sQ" secondAttribute="leading" id="rHE-oq-jIe"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dMv-jw-6ge" secondAttribute="trailing" id="yWi-lP-bxb"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstItem="ZB2-h1-9sQ" firstAttribute="leading" secondItem="Mkl-9Q-Q2D" secondAttribute="leading" id="EZ8-8b-1Dm"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZB2-h1-9sQ" secondAttribute="trailing" id="mJu-8c-4Is"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZB2-h1-9sQ" secondAttribute="bottom" id="os2-Ih-KEy"/>
+                                            <constraint firstItem="ZB2-h1-9sQ" firstAttribute="top" secondItem="Mkl-9Q-Q2D" secondAttribute="top" id="ruY-gA-zA9"/>
+                                        </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="253" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JOB-75-hX6" userLabel="Player 1">
                                         <rect key="frame" x="0.0" y="536.66666666666663" width="344.66666666666669" height="167.33333333333337"/>
