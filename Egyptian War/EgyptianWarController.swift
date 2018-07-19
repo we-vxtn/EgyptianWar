@@ -16,6 +16,9 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, MenuDelega
     // the card back picture, card count label, and the turn indicator
     @IBOutlet weak var player1Stack: UIStackView!
     @IBOutlet weak var player2Stack: UIStackView!
+    // the player name labels
+    @IBOutlet weak var player1NameLabel: UILabel!
+    @IBOutlet weak var player2NameLabel: UILabel!
     // the card back picture, and the card count label
     @IBOutlet weak var player1CardStack: UIStackView!
     @IBOutlet weak var player2CardStack: UIStackView!
@@ -84,6 +87,21 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, MenuDelega
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: Name Related Functions
+    func setNames(player1: String?, player2: String?) {
+        if let name = player1 {
+            player1NameLabel.text = name
+        } else {
+            player1NameLabel.text = "Player 1"
+        }
+        
+        if let name = player2 {
+            player2NameLabel.text = name
+        } else {
+            player2NameLabel.text = "Player 1"
+        }
     }
     
     //MARK: Deal Functions

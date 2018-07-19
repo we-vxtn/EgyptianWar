@@ -353,12 +353,14 @@
                         <outlet property="player1CardBack" destination="OJ9-WZ-I7X" id="Ujb-xT-YkC"/>
                         <outlet property="player1CardCount" destination="dZy-Ht-pbO" id="pTE-ug-fjE"/>
                         <outlet property="player1CardStack" destination="3cA-G6-XGC" id="DaE-R8-ujD"/>
+                        <outlet property="player1NameLabel" destination="2wp-cY-51M" id="yG1-4W-vfF"/>
                         <outlet property="player1Stack" destination="Pa2-Oc-ppE" id="z9g-kh-6gJ"/>
                         <outlet property="player1TurnIndicator" destination="JqH-sw-mos" id="TGD-kz-VdG"/>
                         <outlet property="player2ArrowSlapGesture" destination="AyC-W0-Rk9" id="1xF-Ih-kYw"/>
                         <outlet property="player2CardBack" destination="TBl-tK-eF9" id="FiF-Mw-IJZ"/>
                         <outlet property="player2CardCount" destination="WYE-j3-GYg" id="73e-6u-O10"/>
                         <outlet property="player2CardStack" destination="SA3-It-Vpb" id="Sat-ic-V4Q"/>
+                        <outlet property="player2NameLabel" destination="ATc-yv-15A" id="s5H-Xc-gsy"/>
                         <outlet property="player2Stack" destination="1ZP-g1-imJ" id="FRG-up-y2E"/>
                         <outlet property="player2TurnIndicator" destination="nHa-1L-tUh" id="5Am-mH-DV2"/>
                         <outlet property="screenBlur" destination="eoa-I7-qMM" id="UAI-OK-4jB"/>

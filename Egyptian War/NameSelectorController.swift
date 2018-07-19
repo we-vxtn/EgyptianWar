@@ -9,7 +9,6 @@
 import UIKit
 
 class NameSelectorController: UIViewController {
-
     
     @IBOutlet weak var player1TextField: UITextField!
     @IBOutlet weak var player2TextField: UITextField!
@@ -27,6 +26,7 @@ class NameSelectorController: UIViewController {
     @IBAction func donePressed(_ sender: Any) {
         let gameView  = self.storyboard!.instantiateViewController(withIdentifier: "EgyptianWarView") as! EgyptianWarViewController
         self.present(gameView, animated: true, completion: nil)
+        gameView.setNames(player1: player1TextField.text, player2: player2TextField.text)
     }
     
 
