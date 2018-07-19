@@ -11,7 +11,6 @@ import Foundation
 class Card {
     var rank: Int
     var suit: Character
-    var fromPlayer: Int?        //1 is player 1, 2 is player 2
     
     var name: String {
         get {
@@ -26,10 +25,6 @@ class Card {
     
     func equals(other: Card) -> Bool {
         return self.rank == other.rank
-    }
-    
-    func setFromPlayer(_ player: Int) {
-        fromPlayer = player
     }
 }
 

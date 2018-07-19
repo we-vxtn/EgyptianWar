@@ -145,11 +145,9 @@ class GameLogic {
         //Should play sound
         SoundController.cardDeal()
         
-        
         //moves the card
         let dealtCard = gameDecks[playerNum].cards.remove(at: 0)
         gameDecks[0].cards.append(dealtCard)
-        
         
         //animates the movement of the cards through the animationDelegates
         animateCardDealt(card: dealtCard, playerNum: playerNum)

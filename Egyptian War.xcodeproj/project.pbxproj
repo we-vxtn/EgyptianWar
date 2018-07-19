@@ -99,11 +99,11 @@
 				180DA86420EC0185008703C6 /* GameLogic.swift */,
 				18A79C1120F8279D00D74A69 /* Settings.swift */,
 				3A2009B920F5577A002B6349 /* SoundController.swift */,
-				1843ACFC20F7EDDF00256112 /* AnimationDelegate.swift */,
 				180DA86020EBFA51008703C6 /* CardStackView.swift */,
 				1864EE1320FFFD40002B0CFE /* WinMenu.swift */,
 				1825619D20FC1777002C1C3C /* PauseMenu.swift */,
 				18478D1020FD2CE200732142 /* MenuDelegate.swift */,
+				1843ACFC20F7EDDF00256112 /* AnimationDelegate.swift */,
 				180DA85520EBF7DF008703C6 /* LaunchScreen.storyboard */,
 				180DA85820EBF7DF008703C6 /* Info.plist */,
 			);
