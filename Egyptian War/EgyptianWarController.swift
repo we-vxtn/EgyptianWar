@@ -221,7 +221,13 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, MenuDelega
     func gameOver(winner: Int) {
         setUserInteraction(false)
         screenBlur.isHidden = false
-        winMenu = WinMenu(frame: centerStackView.superview!.convert(centerStackView.frame, to: nil), winner: winner)
+        var winnerName: String
+        if (winner == 1) {
+            winnerName = player1NameLabel.text!
+        } else {
+            winnerName = player2NameLabel.text!
+        }
+        winMenu = WinMenu(frame: centerStackView.superview!.convert(centerStackView.frame, to: nil), winner: winnerName)
         self.view.addSubview(winMenu)
         winMenu.addMenuDelegate(self)
         winMenu.setupSubviews()

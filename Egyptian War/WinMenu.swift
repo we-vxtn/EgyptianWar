@@ -16,17 +16,17 @@ class WinMenu: UIView {
     
     var stackView: UIStackView!
     var delegates: [MenuDelegate]
-    var winnerNum: Int
+    var winnerName: String
     
-    init(frame: CGRect, winner: Int) {
+    init(frame: CGRect, winner: String) {
         delegates = [MenuDelegate]()
-        winnerNum = winner
+        winnerName = winner
         super.init(frame: frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
         delegates = [MenuDelegate]()
-        winnerNum = -1
+        winnerName = "player -1"
         super.init(coder: aDecoder)
     }
     
@@ -61,7 +61,7 @@ class WinMenu: UIView {
         
         // create the winner label
         let winnerLabel = UILabel()
-        winnerLabel.text = "Player \(winnerNum) has won!"
+        winnerLabel.text = "\(winnerName) has won!"
         winnerLabel.textColor = .white
         winnerLabel.font = UIFont.boldSystemFont(ofSize: 30)
         winnerLabel.textAlignment = .center
