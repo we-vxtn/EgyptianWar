@@ -14,8 +14,8 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, MenuDelega
     //MARK: Element Variables
 
     // the card back picture, card count label, and the turn indicator
-    @IBOutlet weak var player1Controls: UIStackView!
-    @IBOutlet weak var player2Controls: UIStackView!
+    @IBOutlet weak var player1Stack: UIStackView!
+    @IBOutlet weak var player2Stack: UIStackView!
     // the card back picture, and the card count label
     @IBOutlet weak var player1CardStack: UIStackView!
     @IBOutlet weak var player2CardStack: UIStackView!
@@ -55,7 +55,7 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, MenuDelega
         newGame()
         
         // rotates the 2nd players control view by pi radians
-        player2Controls.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        player2Stack.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         
         // adds swiping gesture recognizers to centerStackView so that it can move the stack when done
         centerSwipePlayer1Recognizer = UISwipeGestureRecognizer(target: self, action: #selector(player1Claim))
@@ -232,8 +232,8 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, MenuDelega
     
     func setUserInteraction(_ bool: Bool) {
         //for all interactables, set user interaction = bool
-        player1Controls.isUserInteractionEnabled = bool
-        player2Controls.isUserInteractionEnabled = bool
+        player1Stack.isUserInteractionEnabled = bool
+        player2Stack.isUserInteractionEnabled = bool
         centerStackView.isUserInteractionEnabled = bool
     }
     
