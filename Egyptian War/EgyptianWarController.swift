@@ -91,16 +91,16 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, MenuDelega
     
     //MARK: Name Related Functions
     func setNames(player1: String?, player2: String?) {
-        if let name = player1 {
-            player1NameLabel.text = name
+        if !player1!.isEmpty {
+            player1NameLabel.text = player1!
         } else {
             player1NameLabel.text = "Player 1"
         }
         
-        if let name = player2 {
-            player2NameLabel.text = name
+        if !player2!.isEmpty {
+            player2NameLabel.text = player2!
         } else {
-            player2NameLabel.text = "Player 1"
+            player2NameLabel.text = "Player 2"
         }
     }
     
