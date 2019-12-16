@@ -23,6 +23,9 @@ class SettingsViewController: UIViewController {
     
     //MARK: ViewController Functions
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            self.modalPresentationStyle = .fullScreen;
+        }
         if(Settings.slapSound) {
             slapSoundToggle.setOn(true, animated: true)}
         else { slapSoundToggle.setOn(false, animated: true) }

@@ -15,6 +15,9 @@ class NameSelectorController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            self.modalPresentationStyle = .fullScreen;
+        }
         // Do any additional setup after loading the view.
         
         player1TextField.delegate = self

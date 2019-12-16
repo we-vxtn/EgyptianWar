@@ -55,6 +55,9 @@ class EgyptianWarViewController: UIViewController, AnimationDelegate, MenuDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if #available(iOS 13.0, *) {
+            self.modalPresentationStyle = .fullScreen;
+        }
         newGame()
         
         // rotates the 2nd players control view by pi radians

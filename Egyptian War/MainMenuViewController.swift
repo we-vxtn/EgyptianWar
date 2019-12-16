@@ -13,6 +13,9 @@ class MainMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            self.modalPresentationStyle = .fullScreen;
+        }
     }
     
     override func didReceiveMemoryWarning() {
